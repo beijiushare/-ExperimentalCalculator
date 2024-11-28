@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>关于我们</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+      h1 {
+        color: #007bff;
+      }
+      .back-home {
+        position: absolute;
+        top: 20px; /* 距离顶部的距离 */
+        left: 40px; /* 距离左侧的距离 */
+        cursor: pointer;
+        font-size: 48px; /* 图标大小 */
+        color: #007bff; /* 图标颜色 */
+      }
+      .blog {
+        position: absolute;
+        top: 20px; /* 距离顶部的距离 */
+        right: 40px; /* 距离左侧的距离 */
+        cursor: pointer;
+        font-size: 48px; /* 图标大小 */
+        color: #007bff; /* 图标颜色 */
+      }
+      .container {
+        max-width: 800px;
+        margin: 80px auto;
+        background-color: #fff;
+        top: 20px; /* 距离顶部的距离 */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .content {
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="back-home" onclick="goHome()">
+      <i class="fas fa-home"></i>
+      <!-- Font Awesome 图标 -->
+    </div>
+    <div class="blog" onclick="goblog()">
+      <i class="fas fa-pen-square" title="北酒Blog"></i>
+      <!-- Font Awesome 图标 -->
+    </div>
+    <div class="container">
+      <h1>关于我们</h1>
+      <div class="content">
+        <p>
+          欢迎来到我们的不确定度计算器网站！我们致力于提供简单易用的工具，帮助用户进行实验数据处理中的的繁琐计算。希望我们的工具能够为您提供支持和帮助。
+        </p>
+        <p>本网站的计算器支持不准确度、测量误差、最小二乘法的计算。</p>
+        <p>
+          关于背景图片：（默认不显示背景图片）我们用数个免费的动漫图片api地址组成了一个列表，从中随机选择一张图片作为网页背景。图片未经审查，可能存在违法使用或冒犯到使用者，您可以与我们联系，我们会将其从列表中删除。
+        </p>
+        <p>如果您觉得我们的网站对您有所帮助，欢迎给我们一个Star！</p>
+        <p>如果您在使用过程中有任何疑问或建议，欢迎随时与我们联系！</p>
+        <p>联系方式：请在Github仓库中提交issues</p>
+        <p>感谢您的访问，祝您使用愉快！</p>
+      </div>
+    </div>
+
+    <script>
+      function goHome() {
+        window.location.href = "../menu.html";
+      }
+      function goblog() {
+        window.location.href = "https://beijiushare.github.io/";
+      }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </body>
+</html>
