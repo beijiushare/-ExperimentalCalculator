@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>不确定度计算器</title>
+    <link rel="stylesheet" href="../css/basic.css" />
+  </head>
+  <body>
+    <div class="back-home" onclick="goHome()">
+      <i class="fas fa-home"></i>
+      <!-- Font Awesome 图标 -->
+    </div>
+
+    <div class="container">
+      <div class="left-panel">
+        <label for="dataInput">输入数据：</label><br />
+        <table id="dataInput">
+          <thead>
+            <tr>
+              <th></th>
+              <th>A</th>
+              <th>B</th>
+              <th>C</th>
+              <th>D</th>
+              <th>E</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 默认显示 12 行 5 列 -->
+            <script>
+              for (let i = 0; i < 12; i++) {
+                document.write("<tr>");
+                document.write(`<td>${i + 1}</td>`); // 添加行号
+                for (let j = 0; j < 5; j++) {
+                  document.write(
+                    '<td contenteditable="true" onkeydown="moveCursor(event, this)"></td>'
+                  );
+                }
+                document.write("</tr>");
+              }
+            </script>
+          </tbody>
+        </table>
+        <div class="rowCount-container">
+          <!-- <label for="rowCount">输入要增加的行数:</label> -->
+          <input type="number" id="rowCount" min="1" placeholder="行数" />
+          <button onclick="addRow()">增加行</button>
+        </div>
+      </div>
+
+      <div class="right-panel">
+        <h1>不确定度计算器</h1>
+        <label for="measurements">选择测量次数:</label>
+        <select id="measurements">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="其他">其他</option>
+        </select>
+        <input
+          type="number"
+          id="customMeasurements"
+          placeholder="输入测量次数"
+        /><br />
+
+        <label for="confidence">选择置信概率:</label>
+        <select id="confidence">
+          <option value="0.95">95%</option>
+          <option value="0.99">99%</option></select
+        ><br /><br />
+
+        <button onclick="calculateUncertainty()">计算不确定度</button>
+        <p id="result"></p>
+      </div>
+    </div>
+
+    <script src="../js/basic.js"></script>
+    <script>
+      function calculateUncertainty() {
+        const rows = document.querySelectorAll("#dataInput tbody tr");
+        const data = [];
+        rows.forEach((row) => {
+          const rowData = [];
+          row.querySelectorAll("td").forEach((cell) => {
+            const cellValue = cell.innerText.trim();
+            if (!isNaN(cellValue) && cellValue !== "") {
+              rowData.push(Number(cellValue));
+            }
+          });
+          if (rowData.length > 0) {
+            data.push(...rowData);
+          }
+        });
+
+        const measurements = document.getElementById("measurements").value;
+        const confidence = document.getElementById("confidence").value;
+
+        let n =
+          measurements === "其他"
+            ? parseFloat(document.getElementById("customMeasurements").value)
+            : measurements;
+        let uncertainty = 0;
+
+        const standardUncertainty = calculateStandardUncertainty(data);
+        const k = getKValue(confidence);
+        uncertainty = k * standardUncertainty;
+
+        document.getElementById(
+          "result"
+        ).innerText = `不确定度: ${uncertainty.toFixed(4)}`;
+      }
+
+      function calculateStandardUncertainty(data) {
+        return 0.5; // 示例值
+      }
+
+      function getKValue(confidence) {
+        const kValues = {
+          0.95: 2,
+          0.99: 3,
+        };
+        return kValues[confidence];
+      }
+    </script>
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </body>
+</html>

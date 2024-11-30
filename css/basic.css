@@ -1,0 +1,75 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: flex-start; /* 左对齐 */
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  background-color: #f9f9f9; /* 背景色 */
+  overflow: hidden;
+}
+
+.back-home {
+  position: absolute;
+  top: 20px; /* 距离顶部的距离 */
+  left: 40px; /* 距离左侧的距离 */
+  cursor: pointer;
+  font-size: 48px; /* 图标大小 */
+  color: #007bff; /* 图标颜色 */
+  z-index: 10; /* 确保在最上层 */
+}
+
+.container {
+  display: flex;
+  width: calc(100% - 40px); /* 减去 back-home 的宽度 */
+  max-width: 1200px; /* 控制整体宽度 */
+  margin-top: 80px; /* 确保组件下面留出足够空间 */
+}
+
+.left-panel,
+.right-panel {
+  flex: 1; /* 平分空间 */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.left-panel {
+  border-right: 1px solid #ccc; /* 左侧面板右边界 */
+  overflow-y: auto; /* 允许垂直滚动 */
+  max-height: calc(100vh - 130px); /* 减去上方空间 */
+}
+
+h1 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+table {
+  margin: 20px 0;
+  border-collapse: collapse;
+  width: 100%; /* 表格宽度 */
+}
+
+th,
+td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+  cursor: text;
+}
+
+select,
+button {
+  margin: 10px 5px; /* 调整左右间距 */
+  width: 100%; /* 选择框和按钮宽度 */
+}
+
+.rowCount-container {
+  display: flex; /* 使用 Flexbox 布局 */
+  align-items: center; /* 垂直居中对齐 */
+  margin-bottom: 20px; /* 与下方内容留出间距 */
+}
+
+.rowCount-container label {
+  margin-right: 10px; /* 标签与输入框之间的间距 */
+}
